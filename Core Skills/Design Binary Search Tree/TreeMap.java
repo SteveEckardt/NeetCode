@@ -12,10 +12,10 @@ class TreeMap {
 			this.right = null;
 		}
 	}
-	
+	Node root;
 	
     public TreeMap() {
-
+		root = null;
     }
 
     public void insert(int key, int val) {
