@@ -21,23 +21,29 @@ class TreeMap {
     public void insert(int key, int value) {
 		root = insert(root,key,value);
     }
-	private Node insert(Node current, int key, int value){
-		if(current == null) {
-			current = new Node(key,value);
-			return current;
+	private Node insert(Node node, int key, int value){
+		if(node == null) {
+			node = new Node(key,value);
+			return node;
 		}
-		if(key == current.key ){
-			current.value = value;
-			return current;
+		if(key == node.key ){
+			node.value = value;
+			return node;
 		}
-		if(key < current.key) current.left = insert(current.left,key,value); 
-		if(key > current.key) current.left = insert(current.right,key,value); 
-		return current;
+		if(key < node.key) node.left = insert(node.left,key,value); 
+		if(key > node.key) node.left = insert(node.right,key,value); 
+		return node;
 	}
 
     public int get(int key) {
-		return -1;
+		return get(root,key);
     }
+	private int get(Node node, int key){
+		if(node == null) return -1;
+		if(node.key == key) return node.value;
+		if(node.key > key) return get(node.left,key);
+		return get(node.right,key);
+	}
 
     public int getMin() {
 		return -1;
