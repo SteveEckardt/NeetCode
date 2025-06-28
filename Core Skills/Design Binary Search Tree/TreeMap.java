@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 class TreeMap {
 	class Node{
@@ -57,7 +57,10 @@ class TreeMap {
 	
 
     public int getMax() {
-		return -1;
+		if(root == null) return -1;
+		Node node = root;
+		while(node.right != null) node = node.right;
+		return node.value;
     }
 
     public void remove(int key) {
@@ -66,6 +69,13 @@ class TreeMap {
 
     public List<Integer> getInorderKeys() {
 		List<Integer> list = new ArrayList<>();
+		getInorderKeys( list, root);
 		return list;
     }
+	private void getInorderKeys(List<Integer> list, Node node){
+		if(node == null) return;
+		getInorderKeys(list, node.left);
+		list.add(node.key);
+		getInorderKeys(list, node.right);
+	}
 }
