@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class TreeMap {
 	class Node{
 		int key;
@@ -31,7 +34,7 @@ class TreeMap {
 			return node;
 		}
 		if(key < node.key) node.left = insert(node.left,key,value); 
-		if(key > node.key) node.left = insert(node.right,key,value); 
+		if(key > node.key) node.right = insert(node.right,key,value); 
 		return node;
 	}
 
@@ -46,8 +49,12 @@ class TreeMap {
 	}
 
     public int getMin() {
-		return -1;
+		if(root == null) return -1;
+		Node node = root;
+		while(node.left != null) node = node.left;
+		return node.value;
     }
+	
 
     public int getMax() {
 		return -1;
@@ -58,6 +65,7 @@ class TreeMap {
     }
 
     public List<Integer> getInorderKeys() {
-		return new ArrayList<>();
+		List<Integer> list = new ArrayList<>();
+		return list;
     }
 }
