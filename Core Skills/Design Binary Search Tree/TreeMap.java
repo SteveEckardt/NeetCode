@@ -64,8 +64,15 @@ class TreeMap {
     }
 
     public void remove(int key) {
-       
+       root = remove(root,key);
     }
+    private Node remove(Node node, int key) {
+       if(node == null) return node;
+	   if(key < node.key) return remove(node.left,key);
+	   if(key > node.key) return remove(node.right,key);
+
+	   return node;
+    }	
 
     public List<Integer> getInorderKeys() {
 		List<Integer> list = new ArrayList<>();
