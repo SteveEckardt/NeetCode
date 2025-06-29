@@ -14,7 +14,7 @@ This is where I dust off my rusty algorithm skills, re-learn the classics, and t
 
 - My solutions to NeetCode problems (sometimes elegant, sometimes over-engineered, always honest)
 - Occasional comments and rants about why a problem made me question my life choices
-- Code in whatever language I’m feeling brave enough to use that day.
+- Code in whatever language I’m feeling brave enough to use that day. But let's not kid ourselves most of it will be in Java.
 
 ## Disclaimer
 
