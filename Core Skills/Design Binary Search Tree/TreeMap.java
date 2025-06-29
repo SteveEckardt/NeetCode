@@ -54,6 +54,12 @@ class TreeMap {
 		while(node.left != null) node = node.left;
 		return node.value;
     }
+
+	private Node getMinNode(Node node){
+		if(node == null) return node;
+		while(node.left != null) node = node.left;
+		return node;		
+	}
 	
 
     public int getMax() {
@@ -68,9 +74,17 @@ class TreeMap {
     }
     private Node remove(Node node, int key) {
        if(node == null) return node;
-	   if(key < node.key) return remove(node.left,key);
-	   if(key > node.key) return remove(node.right,key);
+	   if(key < node.key) node.left = remove(node.left,key);
+	   else if(key > node.key) node.right = remove(node.right,key);
+	   else{
+			if(node.left == null) return node.right;
+			if(node.right == null) return node.left;
 
+			Node replace = getMinNode(node.right);
+			node.key = replace.key;
+			node.value = replace.value;
+			node.right = remove(node.right,replace.key);
+	   }
 	   return node;
     }	
 
