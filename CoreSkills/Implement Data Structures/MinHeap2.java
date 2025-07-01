@@ -1,32 +1,33 @@
 /**
- * Problem: NeetCode - Design Min Heap
+ * Problem: NeetCode - Design Heap (MinHeap)
  * Author: Steve Eckardt
  * Revision Date: June 30, 2025
  *
- * A basic min-heap (priority queue) implementation using a list with 1-based indexing.
+ * A 1-indexed array-based implementation of a Min Heap,
+ * supporting insertion, removal, and heap construction.
  *
  * Time Complexity:
- * - push(val)         => O(log n)
- * - pop()             => O(log n)
- * - top()             => O(1)
- * - heapify(List)     => O(n log n) (using repeated insert)
+ * - push(val)     => O(log n)
+ * - pop()         => O(log n)
+ * - top()         => O(1)
+ * - heapify(List) => O(n log n) via repeated insert
  */
 
 public class MinHeap {
     private List<Integer> heap;
 
-    // Initialize heap with a dummy value at index 0 (1-based indexing)
+    // Initialize heap with dummy at index 0 for simpler index math
     public MinHeap() {
         heap = new ArrayList<>();
         heap.add(0);
     }
 
-    // Insert a value into the heap and bubble it up
+    // Insert value and bubble up to restore heap property
     public void push(int val) {
         heap.add(val);
         int index = heap.size() - 1;
 
-        // Bubble up while smaller than parent
+        // While parent is greater, swap up
         while (index > 1 && heap.get(index) < heap.get(index / 2)) {
             int temp = heap.get(index);
             heap.set(index, heap.get(index / 2));
@@ -35,11 +36,11 @@ public class MinHeap {
         }
     }
 
-    // Remove and return the minimum value (root)
+    // Remove and return the smallest value (root)
     public Integer pop() {
         int size = heap.size();
-        if (size < 2) return -1; // Empty heap
-        if (size == 2) return heap.remove(1); // Single element
+        if (size < 2) return -1;       // Heap is empty
+        if (size == 2) return heap.remove(1); // Only one element
 
         int result = heap.get(1);
         heap.set(1, heap.remove(--size)); // Move last to root
@@ -47,7 +48,7 @@ public class MinHeap {
         int index = 1;
         size--;
 
-        // Bubble down to maintain heap property
+        // Bubble down to restore heap property
         while (true) {
             int left = Integer.MAX_VALUE;
             int right = Integer.MAX_VALUE;
@@ -73,18 +74,17 @@ public class MinHeap {
         return result;
     }
 
-    // Return the minimum value without removing it
+    // Return the smallest value without removing it
     public Integer top() {
-        if (heap.size() > 1) return heap.get(1);
-        return -1;
+        return heap.size() > 1 ? heap.get(1) : -1;
     }
 
-    // Build a heap from a list of values
+    // Build a heap from an existing list of integers
     public void heapify(List<Integer> nums) {
         heap = new ArrayList<>();
         heap.add(0);
         for (Integer num : nums) {
-            push(num); // Repeated insert
+            push(num); // Repeated inserts
         }
     }
 }

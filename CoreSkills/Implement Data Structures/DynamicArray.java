@@ -16,47 +16,55 @@
  */
 
 
-class DynamicArray {
-    private int[] data;      // The actual array — where the magic happens
-    private int size;        // How many elements we *actually* have
-    private int capacity;    // How many elements we *can* hold before freaking out
+public class DynamicArray {
+    private int[] data;      // Underlying storage
+    private int size;        // Number of elements stored
+    private int capacity;    // Current allocated capacity
 
     public DynamicArray(int capacity) {
-        this.data = new int[capacity]; 	// Start with some room to grow
-        this.size = 0;                 	// Empty, like my weekend plans
-        this.capacity = capacity;      	// Set the initial storage limit
+        this.data = new int[capacity];
+        this.size = 0;
+        this.capacity = capacity;
     }
 
+    // Returns element at index i
     public int get(int i) {
-        return this.data[i]; 	// Just peeking at index i
+        return this.data[i];
     }
 
+    // Sets element at index i to value n
     public void set(int i, int n) {
-        this.data[i] = n;    	// Overwrite whatever was there — no regrets
+        this.data[i] = n;
     }
 
+    // Appends value n to the end of the array
     public void pushback(int n) {
-        if(size == capacity) resize(); 	// Uh-oh, no space? Time to double down
-        this.data[size++] = n;         	// No worries just put it on the end of array
+        if (size == capacity) resize();
+        this.data[size++] = n;
     }
 
+    // Removes and returns the last element
     public int popback() {
-        return this.data[--size]; 	// Give me that back I've got plans for it
+        return this.data[--size];
     }
 
+    // Doubles array capacity and copies existing elements
     private void resize() {
-        int[] newArray = new int[this.capacity * 2]; 	// Get a bigger boat
-        for(int i = 0; i < this.capacity; i++) 
-			newArray[i] = this.data[i]; 		// Copy the old into the new
-        this.data = newArray;     				// Replace the old array with the shiny new one
-        capacity *= 2;            				// Double the storage space — go big or go home
+        int[] newArray = new int[this.capacity * 2];
+        for (int i = 0; i < this.capacity; i++) {
+            newArray[i] = this.data[i];
+        }
+        this.data = newArray;
+        this.capacity *= 2;
     }
 
+    // Returns the current number of elements
     public int getSize() {
-        return this.size; 	// Current headcount
+        return this.size;
     }
 
+    // Returns the current capacity of the array
     public int getCapacity() {
-        return this.capacity; 	// Total room available (for now)
+        return this.capacity;
     }
 }
