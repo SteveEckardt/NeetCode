@@ -19,15 +19,18 @@ class Solution {
         List<Integer> result;
 
         public DFSContext(int n, int[][] edges) {
+            
             // Build adjacency list
             adj = new HashMap<>();
             for (int i = 0; i < n; i++) {
                 adj.put(i, new ArrayList<>());
             }
+            
             // Populate the adjacency list
             for (int[] edge : edges) {
-                ctx.adj.get(edge[0]).add(edge[1]);
-            }            
+                adj.get(edge[0]).add(edge[1]);
+            }
+            
             visited = new boolean[n];
             visiting = new boolean[n];
             result = new ArrayList<>();
@@ -55,7 +58,7 @@ class Solution {
         if (ctx.visited[node]) return true;      // Node already processed
         if (ctx.visiting[node]) return false;    // Cycle detected
 
-        ctx.visiting[node] = true; // Mark node as being visited
+        ctx.visiting[node] = true; // Mark node is visiting
 
         for (int neighbor : ctx.adj.get(node)) {
             if (!dfs(neighbor, ctx)) return false; // Propagate cycle detection
