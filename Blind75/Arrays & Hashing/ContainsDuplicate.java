@@ -16,6 +16,7 @@
 
 class Solution_Sort {
     public boolean hasDuplicate(int[] nums) {
+        
         Arrays.sort(nums); // Sort the array so duplicates are adjacent
         int last = Integer.MAX_VALUE; // Initialize to a value unlikely to be the first input
 
@@ -29,12 +30,15 @@ class Solution_Sort {
 
 class Solution {
     public boolean hasDuplicate(int[] nums) {
+        
         Set<Integer> set = new HashSet<>();
+        
         for(int n: nums){
-            if( set.contains(n) ) return true;
-            set.add(n);
+            if( set.contains(n) ) return true;  // Duplicate found
+            set.add(n); // Add to set if not already present
         }
-        return false;
+        
+        return false; // No duplicates found
     }
 }
     
