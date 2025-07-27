@@ -1,10 +1,9 @@
 /**
  * Problem: Valid Palindrome (NeetCode)
  * Author: Steve Eckardt
- * Revision Date: July 25, 2025
+ * Revision Date: July 26, 2025
  * 
- * One-sentence explanation:
- *   Checks whether a given string is a valid palindrome by ignoring spaces,
+ * Description: Checks whether a given string is a valid palindrome by ignoring spaces,
  *   punctuation, and case sensitivity.
  * 
  * Time Complexity: O(n) – where n is the length of the input string
