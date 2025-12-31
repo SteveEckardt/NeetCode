@@ -30,8 +30,8 @@ class Solution {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode current = root;
 
-        while(current != null || !stack.isEmpty()){ // Traverse left subtree
-            while(current != null){
+        while(current != null || !stack.isEmpty()){ 
+            while(current != null){ // Traverse left subtree
                 stack.push(current);
                 current = current.left;
             }
