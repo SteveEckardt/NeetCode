@@ -11,23 +11,23 @@ class KthLargest {
     private int k;
     private PriorityQueue<Integer> que;
 
-    public KthLargest(int k, int[] nums) {
+    public KthLargest(int k, int[] nums) {  // Constructor
         this.k = k;
         this.que = new PriorityQueue<>(); // Min-heap
 
-        // Add initial values
-        for (int n : nums)
-            que.offer(n);
+        for (int n : nums){
 
-        // Keep only k largest elements
-        while (que.size() > k)
-            que.poll();
+            que.offer(n); // Add initial values
+
+            if (que.size() > this.k) // keep only the first k
+                que.poll();
+        }
     }
-    
+
     public int add(int val) {
         que.offer(val);              // Insert new value
         if (que.size() > this.k)
-            que.poll();              // Remove smallest to maintain size k
+            que.poll();              // keep only the first k
 
         return que.peek();           // Root is kth largest
     }
@@ -37,19 +37,19 @@ class KthLargest2 {
     private int k;
     private List<Integer> list;
 
-    // Constructor-style initializer
-    public void KthLargest(int k, int[] nums) {
+    public void KthLargest(int k, int[] nums) { // Constructor
         this.k = k;
         this.list = new ArrayList<>();
 
-        // Store all initial values
-        for (int n : nums)
+        for (int n : nums) // Store all initial values
             list.add(n);
     }
-    
+
     public int add(int val) {
         list.add(val);               // Add new value
+
         Collections.sort(list);      // Sort entire list
+
         return list.get(list.size() - k); // Return kth largest
     }
 }
